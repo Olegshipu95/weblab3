@@ -1,0 +1,40 @@
+body{
+  font-size: medium;
+  color: white;
+  font-family: Candara, emoji;
+  cursor:pointer;
+  margin: 7% 15% 20% 13%;
+
+}
+.kartinka{
+  position: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+a {
+  background-color: red;
+  box-shadow: 0 5px 0 darkred;
+  color: white;
+  margin: 25px;
+  padding: 5px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+
+}
+
+a:hover {
+  background-color: #ce0606;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+.link{
+  position: center;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}

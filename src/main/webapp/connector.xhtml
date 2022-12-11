@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <h:outputStylesheet library="css" name="conn.scss"/>
+        <style type="text/css">
+            .Bimage{
+                background:black;
+            }
+        </style>
+    </h:head>
+    <h:body styleClass="Bimage">
+        <div class="header">
+            <div class="header-block">
+                <div class="kartinka">
+                <img class="avatar"
+                     src="resources/img/avatar.jpeg"
+                     alt="Avatar"/>
+                </div>
+                <h:outputLabel styleClass="name1">Олег Шипулин, </h:outputLabel>
+                <h:outputLabel styleClass="name 2">Вариант 222444, ису 333955</h:outputLabel>
+            </div>
+        </div>
+        <div class="time">
+            <h3 id="clock">Clock</h3>
+        </div>
+        <div class="link">
+            <h:link id="backLink"
+                    styleClass="link"
+                    outcome="goStart">
+                На стартовую
+            </h:link>
+            <h:link id="mainLink"
+                    styleClass="link"
+                    outcome="goMain">
+                На страницу-обработчик
+            </h:link>
+        </div>
+        <h:outputScript library="js" name="clock.js" target="body"/>
+    </h:body>
+</f:view>
+</html>

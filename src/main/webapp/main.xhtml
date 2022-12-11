@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<f:view>
+    <h:head>
+        <title>Web lab3</title>
+        <h:outputStylesheet library="css" name="index.scss"/>
+        <h:outputStylesheet library="css" name="main.scss"/>
+        <style type="text/css">
+            .Bimage {
+                background: black;
+            }
+        </style>
+    </h:head>
+    <h:body styleClass="Bimage">
+        <div class="link">
+            <h:link id="mainLink"
+                    styleClss="link"
+                    outcome="goConnector">
+                На связующую
+            </h:link>
+        </div>
+        <div class="container">
+            <div class="img_with_my_var">
+                <canvas id="c1" width="350" height="350"></canvas>
+            </div>
+            <h:form styleClass="form" id="form">
+                <div class="select_x">
+                    <p:outputLabel for="x" value="x-value"/>
+                    <p:selectOneMenu id="x" value="#{point.x}">
+                        <f:selectItem itemLabel="-3" itemValue="-3"/>
+                        <f:selectItem itemLabel="-2" itemValue="-2"/>
+                        <f:selectItem itemLabel="-1" itemValue="-1"/>
+                        <f:selectItem itemLabel="0" itemValue="0"/>
+                        <f:selectItem itemLabel="1" itemValue="1"/>
+                        <f:selectItem itemLabel="2" itemValue="2"/>
+                        <f:selectItem itemLabel="3" itemValue="3"/>
+                        <f:selectItem itemLabel="4" itemValue="4"/>
+                        <f:selectItem itemLabel="5" itemValue="5"/>
+                    </p:selectOneMenu>
+                </div>
+                <div class="select_y select">
+                    <p:outputLabel for="y" value="y-value"/>
+                    <h:inputText id="y" value="#{point.y}" pt:placeholder="число от -3 до 5" maxlength="10"
+                                 validatorMessage="Y should be a float from -3 to 5"/>
+                </div>
+                <div class="select_r">
+                    <p:outputLabel for="r" value="r-value:"/>
+                    <h:inputText id="r" value="#{point.r}" pt:placeholder="число от 1 до 5" maxlength="1"
+                                 validatorMessage="R should be a float from -3 to 5"/>
+                </div>
+                <div class="submits">
+                    <h:commandButton
+                            id="submit"
+                            value="Отправить"
+                            styleClass="content-text bordered" action="#{point.submit()}">
+                        <f:ajax execute="form" onevent="draw" render="results"/>
+                    </h:commandButton>
+                    <h:commandButton
+                            value="Сбросить"
+                            styleClass="content-text bordered">
+                        <f:ajax execute="@form" listener="#{point.clearRecords()}" render="results"/>
+                    </h:commandButton>
+                </div>
+            </h:form>
+            <div class="table-container">
+                <div class="glass">
+                    <h:panelGroup id="results">
+                        <h:dataTable value="#{personalData.records}" var="hit" >
+                            <h:column>
+                                <f:facet name="header">Coodinates</f:facet>
+                                <h:outputText value="#{hit.cordsToString()}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Время</f:facet>
+                                <h:outputText value="#{hit.timeFormatted()}"/>
+                            </h:column><h:column>
+                            <f:facet name="header">Исполнение</f:facet>
+                            <h:outputText value="#{hit.execFormatted()}"/>
+                        </h:column>
+                            <h:column>
+                                <f:facet name="header">Результаты</f:facet>
+                                <h:outputText value="#{hit.result}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+        <h:outputScript library="js" name="validation.js"/>
+        <h:outputScript library="js" name="graph.js"/>
+    </h:body>
+</f:view>
+</html>
